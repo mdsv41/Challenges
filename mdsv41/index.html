@@ -139,7 +139,7 @@
     let parts = document.getElementById('parts').value;
     salaireNet = salaireNet / parts;
     if (salaireNet <= 10064) {
-      SalaireCalculer = 10064 * parts;
+      SalaireCalculer = salaireNet * parts;
     } else if (salaireNet + 1715.56 <= 25660) {
       SalaireCalculer = ((salaireNet - 1107.04) / 0.89) * parts;
     } else if (salaireNet + 1715.56 + 14313 <= 73370 && salaireNet + 1715.56 > 25660) {
