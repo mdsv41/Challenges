@@ -23,7 +23,8 @@
       <li>Tranche 73370 à 157806 :<span id="41"></span></li>
       <li>Tranche supérieur à 157806 :<span id="45"></span></li>
     </ul>
-    <p>Montant impot <span id="totalImpot"></span></p>
+    <p>Montant impot 2020: <span id="totalImpot2020"></span></p>
+    <p>Montant impot 2019: <span id="totalImpot2019"></span></p>
     <p>Montant salaire aprés impôt <span id="salaireReste"></span></p>
     <p>réduction par rapport à 2019 : <span id="delta2019"></span></p>
   </div>
@@ -43,92 +44,80 @@
 </div>
 <script>
   function calcul() {
-    let t11;
-    let t30;
-    let t41;
-    let t45;
-    let impot;
+    let A20T1 = 0.11;
+    let A20T2 = 0.30;
+    let A20T3 = 0.41;
+    let A20T4 = 0.45;
+    let A20I1 = 0;
+    let A20I2 = 0;
+    let A20I3 = 0;
+    let A20I4 = 0;
+    let impot2020;
     let salaire;
     let salaireReste;
     let salaireBrut = document.getElementById('salaire').value;
     let part = document.getElementById('part').value;
     salaire = salaireBrut / part;
     if (salaire <= 10064) {
-      t11 = 0;
-      t30 = 0;
-      t41 = 0;
-      t45 = 0;
-      impot = (t11 + t30 + t41 + t45) * part;
+      impot2020 = (A20I1 + A20I2 + A20I3 + A20I4) * part;
     } else if (salaire <= 25660) {
-      t11 = (salaire - 10064) * 0.11;
-      t30 = 0;
-      t41 = 0;
-      t45 = 0;
-      impot = (t11 + t30 + t41 + t45) * part;
+      A20I1 = (salaire - 10064) * A20T1;
+      impot2020 = (A20I1 + A20I2 + A20I3 + A20I4) * part;
     } else if (salaire <= 73370) {
-      t11 = (25660 - 10064) * 0.11;
-      t30 = (salaire - 25660) * 0.30;
-      t41 = 0;
-      t45 = 0;
-      impot = (t11 + t30 + t41 + t45) * part;
+      A20I1 = (25660 - 10064) * A20T1;
+      A20I2 = (salaire - 25660) * A20T2;
+      impot2020 = (A20I1 + A20I2 + A20I3 + A20I4) * part;
     } else if (salaire <= 157806) {
-      t11 = (25660 - 10064) * 0.11;
-      t30 = (73370 - 25660) * 0.30;
-      t41 = (salaire - 73370) * 0.41;
-      t45 = 0;
-      impot = (t11 + t30 + t41 + t45) * part;
+      A20I1 = (25660 - 10064) * A20T1;
+      A20I2 = (73370 - 25660) * A20T2;
+      A20I3 = (salaire - 73370) * A20T3;
+      impot2020 = (A20I1 + A20I2 + A20I3 + A20I4) * part;
     } else {
-      t11 = (25660 - 10064) * 0.11;
-      t30 = (73370 - 25660) * 0.30;
-      t41 = (157806 - 73370) * 0.41;
-      t45 = (salaire - 157806) * 0.45;
-      impot = (t11 + t30 + t41 + t45) * part;
+      A20I1 = (25660 - 10064) * A20T1;
+      A20I2 = (73370 - 25660) * A20T2;
+      A20I3 = (157806 - 73370) * A20T3;
+      A20I4 = (salaire - 157806) * A20T4;
+      impot2020 = (A20I1 + A20I2 + A20I3 + A20I4) * part;
     }
-    let A19t14;
-    let A19t30;
-    let A19t41;
-    let A19t45;
+    let A19T1 = 0.14;
+    let A19T2 = 0.30;
+    let A19T3 = 0.41;
+    let A19T4 = 0.45;
+    let A19I1 = 0;
+    let A19I2 = 0;
+    let A19I3 = 0;
+    let A19I4 = 0;
     let impot2019;
     let delta2019;
     if (salaire <= 10064) {
-      A19t14 = 0;
-      A19t30 = 0;
-      A19t41 = 0;
-      A19t45 = 0;
-      impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+      impot2019 = (A19I1 + A19I2 + A19I3 + A19I4) * part;
     } else if (salaire <= 27794) {
-      A19t14 = (salaire - 10064) * 0.14;
-      A19t30 = 0;
-      A19t41 = 0;
-      A19t45 = 0;
-      impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+      A19I1 = (salaire - 10064) * A19T1;
+      impot2019 = (A19I1 + A19I2 + A19I3 + A19I4) * part;
     } else if (salaire <= 74517) {
-      A19t14 = (27794 - 10064) * 0.14;
-      A19t30 = (salaire - 27794) * 0.30;
-      A19t41 = 0;
-      A19t45 = 0;
-      impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+    A19I1 = (27794 - 10064) * A19T2;
+      A19I2 = (salaire - 27794) * A19T2;
+      impot2019 = (A19I1 + A19I2 + A19I3 + A19I4) * part;
     } else if (salaire <= 157806) {
-      A19t14 = (27794 - 10064) * 0.14;
-      A19t30 = (74517 - 27794) * 0.30;
-      A19t41 = (salaire - 74517) * 0.41;
-      A19t45 = 0;
-      impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+      A19I1 = (27794 - 10064) * A19T1;
+      A19I2 = (74517 - 27794) * A19T2;
+      A19I3 = (salaire - 74517) * A19T3;
+      impot2019 = (A19I1 + A19I2 + A19I3 + A19I4) * part;
     } else {
-      A19t14 = (27794 - 10064) * 0.14;
-      A19t30 = (74517 - 27794) * 0.30;
-      A19t41 = (157806 - 74517) * 0.41;
-      A19t45 = (salaire - 157806) * 0.45;
-      impot2019 = (A19t14 + A19t30 + A19t41 + A19t45) * part;
+      A19I1 = (27794 - 10064) * A19T1;
+      A19I2 = (74517 - 27794) * A19T2;
+      A19I3 = (157806 - 74517) * A19T3;
+      A19I4 = (salaire - 157806) * A19T4;
+      impot2019 = (A19I1 + A19I2 + A19I3 + A19I4) * part;
     }
-    salaireReste = salaireBrut - impot;
-    delta2019 = impot - impot2019
+    salaireReste = salaireBrut - impot2020;
+    delta2019 = impot2020 - impot2019
     document.getElementById('0').innerHTML = '0,00 €';
-    document.getElementById('11').innerHTML = t11 + ' €';
-    document.getElementById('30').innerHTML = t30 + ' €';
-    document.getElementById('41').innerHTML = t41 + ' €';
-    document.getElementById('45').innerHTML = t45 + ' €';
-    document.getElementById('totalImpot').innerHTML = Math.round(impot) + ' €';
+    document.getElementById('11').innerHTML = A20I1 + ' €';
+    document.getElementById('30').innerHTML = A20I2 + ' €';
+    document.getElementById('41').innerHTML = A20I3 + ' €';
+    document.getElementById('45').innerHTML = A20I4 + ' €';
+    document.getElementById('totalImpot2020').innerHTML = Math.round(impot2020) + ' €';
     document.getElementById('salaireReste').innerHTML = Math.round(salaireReste) + ' €';
     document.getElementById('delta2019').innerHTML = Math.round(delta2019) + ' €';
   }
